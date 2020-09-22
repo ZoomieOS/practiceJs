@@ -1,5 +1,3 @@
-function showFirstMessage(text = 'Oleg') {
-    alert(text);
-}
+let array = ['Яблоко', 'Груша', 'Ананас', 'Банан'];
 
-showFirstMessage();
+console.log(array.sort());

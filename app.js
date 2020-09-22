@@ -74,6 +74,14 @@ const appData = {
       console.log('Вы ничего не сохранили!');
     }
   },
+  chooseIncome: function() {
+    let item = prompt('Что приносит доп.доход?', '');
+    appData.income = item.split(',');
+
+    appData.income.forEach((item, i) => {
+      alert(`Способы доп.заработка: ${item}`);
+    });
+  }
 };
 
 appData.budgetOfTheDay();
@@ -81,3 +89,9 @@ appData.chooseExpenses();
 appData.detectLevel();
 appData.chooseOptExpenses();
 appData.checkSavings();
+appData.chooseIncome();
+
+
+for(let key in appData) {
+  console.log(`Наша программа включает в себя данные: ${appData[key]}`);
+}
