@@ -3,6 +3,8 @@ let budgetOnTheMonth = +prompt('Ваш бюджет на месяц?'),
     firstQuestion = prompt('Введите обязательную статью расходов в этом месяце'),
     secondQuestion = prompt('Во сколько обойдется?');
 
+let budgetText = document.querySelector('#budget');
+
 const appData = {
     budgetOnTheMonth,
     timeData: periodMoney,
@@ -13,7 +15,7 @@ const appData = {
     income: [],
     savings: false,
     budgetOfTheDay: function() {
-        console.info(this.budgetOnTheMonth / 30);
+        budgetText.innerHTML = `My budget is: ${this.budgetOnTheMonth / 30 }`;
     }
 };
 
