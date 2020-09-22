@@ -1,16 +1,12 @@
 let budgetOnTheMonth = +prompt("Ваш бюджет на месяц?"),
-  periodMoney = prompt("Введите дату в формате YYYY-MM-DD"),
-  firstQuestion = prompt("Введите обязательную статью расходов в этом месяце"),
-  secondQuestion = prompt("Во сколько обойдется?");
+  periodMoney = prompt("Введите дату в формате YYYY-MM-DD");
 
 let budgetText = document.querySelector("#budget");
 
 const appData = {
   budgetOnTheMonth,
   timeData: periodMoney,
-  expenses: {
-    firstQuestion: secondQuestion,
-  },
+  expenses: {},
   optionalExpenses: {},
   income: [],
   savings: false,
@@ -22,3 +18,10 @@ const appData = {
 };
 
 appData.budgetOfTheDay();
+
+for(let i = 0; i < 2; i++) {
+    let firstQuestion = prompt("Введите обязательную статью расходов в этом месяце"),
+        secondQuestion = prompt("Во сколько обойдется?");
+    
+    appData.expenses[firstQuestion] = secondQuestion;    
+}
