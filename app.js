@@ -59,7 +59,7 @@ const appData = {
         secondQuestion != "" &&
         firstQuestion.length < 50
       ) {
-        appData.expenses[firstQuestion] = secondQuestion;
+        appData.expenses[i] = secondQuestion;
       } else {
       }
     }
@@ -70,6 +70,8 @@ const appData = {
         percent = +prompt("Под какой процент?");
       this.monthIncome = (save / 100 / 12) * percent;
       alert(`Доход в месяц от вашего депозита:${this.monthIncome}`);
+    } else {
+      console.log('Вы ничего не сохранили!');
     }
   },
 };
