@@ -1,25 +1,25 @@
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", () => {
   let containerTab = document.querySelector(".info-header"),
     tabBtn = document.querySelectorAll(".info-header-tab"),
     tabConetent = document.querySelectorAll(".info-tabcontent");
 
-  function hideTabContent(a) {
+  const hideTabContent = (a) => {
     for (let i = a; i < tabConetent.length; i++) {
       tabConetent[i].classList.remove("show");
       tabConetent[i].classList.add("hide");
     }
-  }
+  };
 
   hideTabContent(1);
 
-  function showTabContent(b) {
+  const showTabContent = (b) => {
     if (tabConetent[b].classList.contains("hide")) {
       tabConetent[b].classList.remove("hide");
       tabConetent[b].classList.add("show");
     }
-  }
+  };
 
-  containerTab.addEventListener("click", function (e) {
+  containerTab.addEventListener("click", (e) => {
     if (e.target && e.target.classList.contains("info-header-tab")) {
       for (let i = 0; i < tabBtn.length; i++) {
         if (e.target === tabBtn[i]) {
@@ -31,9 +31,9 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  let deadline = "2020-09-26";
+  const deadline = "2020-09-28";
 
-  function getTimeRemaining(time) {
+  const getTimeRemaining = (time) => {
     let t = Date.parse(time) - Date.parse(new Date()),
       seconds = Math.floor((t / 1000) % 60),
       minutes = Math.floor((t / 1000 / 60) % 60),
@@ -45,34 +45,35 @@ window.addEventListener("DOMContentLoaded", function () {
       minutes: minutes,
       seconds: seconds,
     };
-  }
+  };
 
-  function setTimerClock(id, endtime) {
+  const setTimerClock = (id, endtime) => {
     let containerTimer = document.getElementById(id),
       hours = containerTimer.querySelector(".hours"),
       minutes = containerTimer.querySelector(".minutes"),
-      seconds = containerTimer.querySelector(".seconds"),
-      timeInterval = setInterval(updateTimer, 1000);
+      seconds = containerTimer.querySelector(".seconds");
 
-    function updateTimer() {
+    setInterval(() => {
       let t = getTimeRemaining(endtime);
       hours.textContent = t.hours;
       minutes.textContent = t.minutes;
       seconds.textContent = t.seconds;
 
-      if (t.total <= 0) {
-        clearInterval(timeInterval);
-      }
+      t.total <= 0 ? clearInterval() : false;
 
-      if (t.hours <= 9) {
-        hours.textContent = "0" + t.hours;
-      } else if (t.minutes <= 9) {
-        minutes.textContent = "0" + t.minutes;
-      } else if (t.seconds <= 9) {
-        seconds.textContent = "0" + t.seconds;
+      switch (true) {
+        case t.total <= 9:
+          hours.textContent = "0" + t.hours;
+          break;
+        case t.miuntes <= 9:
+          minutes.textContent = "0" + t.minutes;
+          break;
+        case t.seconds <= 9:
+          seconds.textContent = "0" + t.seconds;
+          break;
       }
-    }
-  }
+    }, 1000);
+  };
 
   setTimerClock("timer", deadline);
 });
@@ -86,22 +87,3 @@ let btnMore = document.querySelector(".more"),
 btnMore.addEventListener("click", () => (modalWindow.style.display = "block"));
 
 btnClose.addEventListener("click", () => (modalWindow.style.display = "none"));
-
-// Modal #2
-
-// function popupWindowCall(btn, modal, closePopup) {
-
-//   let b = document.querySelector(btn),
-//       m = document.querySelector(modal),
-//       c = document.querySelector(closePopup);
-
-//   return function callModalWindow() {
-//     b.addEventListener('click', () => m.style.display = "block");
-//     c.addEventListener('click', () => m.style.display = "none");
-//   };
-
-// }
-
-// let callPopup = popupWindowCall('.more', '.overlay', '.popup-close');
-
-// callPopup();
