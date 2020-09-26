@@ -60,9 +60,9 @@ window.addEventListener("DOMContentLoaded", function () {
       minutes.textContent = t.minutes;
       seconds.textContent = t.seconds;
 
-      if(t.total <= 0) {
+      if (t.total <= 0) {
         clearInterval(timeInterval);
-      }  
+      }
 
       if (t.hours <= 9) {
         hours.textContent = "0" + t.hours;
@@ -76,3 +76,32 @@ window.addEventListener("DOMContentLoaded", function () {
 
   setTimerClock("timer", deadline);
 });
+
+// Modal
+
+let btnMore = document.querySelector(".more"),
+  modalWindow = document.querySelector(".overlay"),
+  btnClose = document.querySelector(".popup-close");
+
+btnMore.addEventListener("click", () => (modalWindow.style.display = "block"));
+
+btnClose.addEventListener("click", () => (modalWindow.style.display = "none"));
+
+// Modal #2
+
+// function popupWindowCall(btn, modal, closePopup) {
+
+//   let b = document.querySelector(btn),
+//       m = document.querySelector(modal),
+//       c = document.querySelector(closePopup);
+
+//   return function callModalWindow() {
+//     b.addEventListener('click', () => m.style.display = "block");
+//     c.addEventListener('click', () => m.style.display = "none");
+//   };
+
+// }
+
+// let callPopup = popupWindowCall('.more', '.overlay', '.popup-close');
+
+// callPopup();
