@@ -64,6 +64,3 @@ function Options(height, width, name, bg = "", fontSize = "", textAlign = "") {
     main.insertBefore(newDiv, firstElem);
   };
 }
-
-let x = new Options(200, 300, "Oleg", "red", 14, "center");
-x.createElement();

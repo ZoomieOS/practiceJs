@@ -76,14 +76,20 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   setTimerClock("timer", deadline);
+
+  // Modal
+
+  let btnMore = document.querySelector(".more"),
+    modalWindow = document.querySelector(".overlay"),
+    btnClose = document.querySelector(".popup-close");
+
+  btnMore.addEventListener(
+    "click",
+    () => (modalWindow.style.display = "block")
+  );
+
+  btnClose.addEventListener(
+    "click",
+    () => (modalWindow.style.display = "none")
+  );
 });
-
-// Modal
-
-let btnMore = document.querySelector(".more"),
-  modalWindow = document.querySelector(".overlay"),
-  btnClose = document.querySelector(".popup-close");
-
-btnMore.addEventListener("click", () => (modalWindow.style.display = "block"));
-
-btnClose.addEventListener("click", () => (modalWindow.style.display = "none"));
