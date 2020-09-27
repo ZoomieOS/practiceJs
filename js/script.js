@@ -92,4 +92,83 @@ window.addEventListener("DOMContentLoaded", () => {
     "click",
     () => (modalWindow.style.display = "none")
   );
+
+  // Send data
+
+  let message = {
+    loading: "Загрузка",
+    success: "Спасибо! Скоро мы с Вами свяжемся",
+    failure: "Что-то пошло не так!",
+  };
+
+  let form = document.querySelector(".main-form"),
+    input = form.getElementsByTagName("input"),
+    statusMessage = document.createElement("div");
+
+  statusMessage.classList.add("status");
+
+  // AJAX Method
+
+  // form.addEventListener("submit", function (event) {
+  //   event.preventDefault();
+  //   form.appendChild(statusMessage);
+
+  //   let request = new XMLHttpRequest();
+
+  //   request.open("POST", "server.php");
+  //   (request.setRequestHeader = "Content-Type"),
+  //     "application/json; chatset=utf8";
+
+  //   let formData = new FormData(form);
+  //   let obj = {};
+  //   formData.forEach((value, key) => {
+  //     obj[key] = value;
+  //   });
+
+  //   let json = JSON.stringify(obj);
+
+  //   request.send(json);
+
+  //   request.addEventListener("readystatechange", () => {
+  //     if (request.readyState < 4) {
+  //       statusMessage.innerHTML = message.loading;
+  //     } else if (request.readyState === 4 && request.status === 200) {
+  //       statusMessage.innerHTML = message.success;
+  //     } else {
+  //       statusMessage.innerHTML = message.failure;
+  //     }
+  //   });
+
+  //   for (let i = 0; i < input.length; i++) {
+  //     input[i].value = "";
+  //   }
+  // });
+
+  // Fetch method
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    form.appendChild(statusMessage);
+
+    let formData = new FormData(form);
+    let obj = {};
+    formData.forEach((value, key) => {
+      obj[key] = value;
+    });
+
+    fetch("server.php", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    }).then((Response) => {
+      if (Response.status === 200) {
+        statusMessage.innerHTML = message.success;
+      } else {
+        statusMessage.innerHTML = message.failure;
+      }
+    });
+  });
 });

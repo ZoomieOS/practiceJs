@@ -4,7 +4,7 @@ class apiRequest {
     this.elementId = elementId;
   }
   getPost() {
-    let e = document.querySelector(`#${this.elementId}`)
+    let e = document.querySelector(`#${this.elementId}`);
     fetch(this.url)
       .then((response) => response.json())
       .then((posts) => {
@@ -20,5 +20,8 @@ class apiRequest {
   }
 }
 
-let reqPost = new apiRequest('https://jsonplaceholder.typicode.com/posts', 'post');
+let reqPost = new apiRequest(
+  "https://jsonplaceholder.typicode.com/posts",
+  "post"
+);
 reqPost.getPost();
